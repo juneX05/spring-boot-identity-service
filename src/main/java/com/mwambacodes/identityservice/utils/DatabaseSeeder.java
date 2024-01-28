@@ -1,17 +1,17 @@
 package com.mwambacodes.identityservice.utils;
 
-import com.mwambacodes.identityservice.modules.Domain.DomainSeeder;
-import com.mwambacodes.identityservice.modules.Domain._Modules.DomainStatus.DomainStatusSeeder;
-import com.mwambacodes.identityservice.modules.Permission.PermissionEntity;
-import com.mwambacodes.identityservice.modules.Permission.PermissionRepository;
-import com.mwambacodes.identityservice.modules.Permission.PermissionSeeder;
-import com.mwambacodes.identityservice.modules.Role.RoleEntity;
-import com.mwambacodes.identityservice.modules.Role.RoleRepository;
-import com.mwambacodes.identityservice.modules.Role.RoleSeeder;
-import com.mwambacodes.identityservice.modules.Status.StatusSeeder;
-import com.mwambacodes.identityservice.modules.User.UserSeeder;
-import com.mwambacodes.identityservice.modules.User._Modules.UserStatus.UserStatusSeeder;
-import com.mwambacodes.identityservice.modules.User._Modules.UserType.UserTypeSeeder;
+import com.mwambacodes.identityservice.modules.System.Domain.DomainSeeder;
+import com.mwambacodes.identityservice.modules.System.Domain._Modules.DomainStatus.DomainStatusSeeder;
+import com.mwambacodes.identityservice.modules.Core.Permission.PermissionEntity;
+import com.mwambacodes.identityservice.modules.Core.Permission.PermissionRepository;
+import com.mwambacodes.identityservice.modules.Core.Permission.PermissionSeeder;
+import com.mwambacodes.identityservice.modules.Core.Role.RoleEntity;
+import com.mwambacodes.identityservice.modules.Core.Role.RoleRepository;
+import com.mwambacodes.identityservice.modules.Core.Role.RoleSeeder;
+import com.mwambacodes.identityservice.modules.Core.Status.StatusSeeder;
+import com.mwambacodes.identityservice.modules.Core.User.UserSeeder;
+import com.mwambacodes.identityservice.modules.Core.User._Modules.UserStatus.UserStatusSeeder;
+import com.mwambacodes.identityservice.modules.Core.User._Modules.UserType.UserTypeSeeder;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -44,16 +44,16 @@ public class DatabaseSeeder {
     ) {
         if(alreadySetup) return;
 
-//        permissionSeeder.run();
-//        domainStatusSeeder.run();
-//        domainSeeder.run();
-//        statusSeeder.run();
-//        userStatusSeeder.run();
-//        roleSeeder.run();
-//        userTypeSeeder.run();
-//        userSeeder.run();
-//
-//        finalizeSeeding();
+        permissionSeeder.run();
+        domainStatusSeeder.run();
+        domainSeeder.run();
+        statusSeeder.run();
+        userStatusSeeder.run();
+        roleSeeder.run();
+        userTypeSeeder.run();
+        userSeeder.run();
+
+        finalizeSeeding();
 
     }
 

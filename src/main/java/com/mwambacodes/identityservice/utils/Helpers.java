@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Helpers {
+
     public static Date startProcessingTime;
     public static UserDetails loggedInUser = null;
 
@@ -47,6 +48,10 @@ public class Helpers {
                 .message(message)
                 .data(data)
                 .build();
+    }
+
+    public static ServiceResult success(String message, Object data) {
+        return result(true, message, 200, data);
     }
 
     public static ServiceResult success(String message, Integer code, Object data) {

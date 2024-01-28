@@ -1,14 +1,12 @@
 package com.mwambacodes.identityservice.filters;
 
 import com.mwambacodes.identityservice.jwt.JWTUtil;
-import com.mwambacodes.identityservice.modules.User._Modules.UserRole.UserRoleRepository;
 import com.mwambacodes.identityservice.utils.Helpers;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.SessionFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
