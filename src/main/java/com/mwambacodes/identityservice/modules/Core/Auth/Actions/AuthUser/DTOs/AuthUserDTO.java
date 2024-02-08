@@ -5,6 +5,7 @@ import com.mwambacodes.identityservice.modules.Core.User._Modules.UserStatus.Use
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -26,8 +27,8 @@ public class AuthUserDTO {
     String email;
     String firstName;
     String lastName;
-    Date createdAt;
-    Date updatedAt;
+    LocalDateTime createdAt;
+    LocalDateTime updatedAt;
     UserStatusEntity userStatus;
     List<DomainEntity> userDomains;
     Set<String> permissions;

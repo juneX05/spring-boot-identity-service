@@ -33,7 +33,7 @@ public class AuthUserMapper implements Function<UserEntity, AuthUserDTO> {
                 .permissions(user.getPermissionsList())
                 .roles(user.getRoles().stream().map(RoleEntity::getName).toList())
                 .email(user.getEmail())
-                .updatedAt(user.getUpdatedAt())
+                .updatedAt(user.getLastUpdatedAt())
                 .uuid(user.getUuid())
                 .createdAt(user.getCreatedAt())
                 .userType(

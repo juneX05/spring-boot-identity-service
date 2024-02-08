@@ -21,6 +21,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -52,11 +53,13 @@ public class UserSaveService {
                         .firstName(request.getFirstName())
                         .lastName(request.getLastName())
                         .password(passwordEncoder.encode(request.getPassword()))
-                        .createdAt(Date.from(Instant.now()))
-                        .updatedAt(Date.from(Instant.now()))
+                        .createdAt(LocalDateTime.now())
+                        .lastUpdatedAt(LocalDateTime.now())
                         .uuid(UUID.randomUUID())
                         .userStatus(userStatusRepository.getReferenceById(Integer.valueOf(UserStatusEntity.PENDING)))
                         .userType(userTypeRepository.getReferenceById(UserTypeEntity.ADMIN))
+                        .createdBy(Helpers.loggedInUser)
+                        .lastUpdatedBy(Helpers.loggedInUser)
                         .build()
         );
 

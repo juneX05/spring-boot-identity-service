@@ -15,6 +15,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Data
@@ -51,10 +52,20 @@ public class UserEntity implements UserDetails {
     private String password;
 
     @Column(nullable = false, name = "created_at")
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
-    @Column(nullable = false, name = "updated_at")
-    private Date updatedAt;
+    @ManyToOne
+    @JoinColumn(nullable = true, name = "created_by")
+    @ToString.Exclude
+    private UserEntity createdBy;
+
+    @Column(nullable = false, name = "last_updated_at")
+    private LocalDateTime lastUpdatedAt;
+
+    @ManyToOne
+    @JoinColumn(nullable = true, name = "last_updated_by")
+    @ToString.Exclude
+    private UserEntity lastUpdatedBy;
 
     @ManyToOne
     @JoinColumn(nullable = false, name = "user_status_id")
@@ -83,9 +94,6 @@ public class UserEntity implements UserDetails {
     )
     @ToString.Exclude
     private Collection<RoleEntity> roles;
-
-//    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-//    private Collection<UserRoleEntity> userRoles;
 
     @OneToMany(mappedBy = "user")
     @ToString.Exclude

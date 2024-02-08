@@ -44,16 +44,16 @@ public class DatabaseSeeder {
     ) {
         if(alreadySetup) return;
 
-        permissionSeeder.run();
-        domainStatusSeeder.run();
-        domainSeeder.run();
-        statusSeeder.run();
-        userStatusSeeder.run();
-        roleSeeder.run();
-        userTypeSeeder.run();
-        userSeeder.run();
-
-        finalizeSeeding();
+//        permissionSeeder.run();
+//        domainStatusSeeder.run();
+//        domainSeeder.run();
+//        statusSeeder.run();
+//        userStatusSeeder.run();
+//        roleSeeder.run();
+//        userTypeSeeder.run();
+//        userSeeder.run();
+//
+//        finalizeSeeding();
 
     }
 

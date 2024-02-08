@@ -1,5 +1,6 @@
 package com.mwambacodes.identityservice.utils;
 
+import com.mwambacodes.identityservice.modules.Core.User.UserEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -11,7 +12,7 @@ import java.util.Map;
 public class Helpers {
 
     public static Date startProcessingTime;
-    public static UserDetails loggedInUser = null;
+    public static UserEntity loggedInUser = null;
 
     public static ResponseEntity<ApiResponse> sendResponse(ServiceResult result, Map<String, String> headers) {
 //        ResponseEntity.BodyBuilder response;

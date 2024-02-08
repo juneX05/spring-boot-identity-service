@@ -52,7 +52,7 @@ public class MediaUploadService {
         String[] splits = Objects.requireNonNull(file.getOriginalFilename()).split("\\.");
         String extension = splits[splits.length-1];
         String date = DateTimeFormatter
-                .ofPattern("yyyyMMddHHmmssSSS")
+                .ofPattern("yyyyMMddHHmmssSSSSSS")
                 .format(LocalDateTime.now());
 
         String name = date + "." + extension;

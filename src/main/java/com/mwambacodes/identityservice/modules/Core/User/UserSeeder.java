@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Date;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,33 +43,28 @@ public class UserSeeder {
     }
 
     public void seedData() {;
+        RoleEntity developerRole = roleRepository.findById(1L).stream().toList().get(0);
 
-        try {
-            RoleEntity developerRole = roleRepository.findById(1L).stream().toList().get(0);
+        UserEntity user = new UserEntity();
+        user.setFirstName("Developer");
+        user.setLastName("Joe");
+        user.setEmail("developer@gmail.com");
+        user.setPassword(passwordEncoder.encode("password"));
+        user.setCreatedAt(LocalDateTime.now());
+        user.setLastUpdatedAt(LocalDateTime.now());
+        user.setUserStatus(userStatusRepository.findById(Integer.valueOf(UserStatusEntity.ACTIVE)).get());
+        user.setUserType(userTypeRepository.findById(UserTypeEntity.DEVELOPER).get());
+        var model = userRepository.save(user);
 
-            UserEntity user = new UserEntity();
-            user.setFirstName("Developer");
-            user.setLastName("Joe");
-            user.setEmail("developer@gmail.com");
-            user.setPassword(passwordEncoder.encode("password"));
-            user.setCreatedAt(Date.from(Instant.now()));
-            user.setUpdatedAt(Date.from(Instant.now()));
-            user.setUserStatus(userStatusRepository.findById(Integer.valueOf(UserStatusEntity.ACTIVE)).get());
-            user.setUserType(userTypeRepository.findById(UserTypeEntity.DEVELOPER).get());
-            var model = userRepository.save(user);
+        UserRoleKey userRoleKey = new UserRoleKey();
+        userRoleKey.setUserId(model.getId());
+        userRoleKey.setRoleId(developerRole.getId());
 
-            UserRoleKey userRoleKey = new UserRoleKey();
-            userRoleKey.setUserId(model.getId());
-            userRoleKey.setRoleId(developerRole.getId());
-
-            UserRoleEntity userRoleEntity = new UserRoleEntity();
-            userRoleEntity.setId(userRoleKey);
-            userRoleEntity.setRole(developerRole);
-            userRoleEntity.setUser(model);
-            userRoleRepository.save(userRoleEntity);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        UserRoleEntity userRoleEntity = new UserRoleEntity();
+        userRoleEntity.setId(userRoleKey);
+        userRoleEntity.setRole(developerRole);
+        userRoleEntity.setUser(model);
+        userRoleRepository.save(userRoleEntity);
     }
 
     public void seedPermissions() {
@@ -122,10 +118,6 @@ public class UserSeeder {
                 .module(module)
                 .build()
         );
-        try {
-            permissionRepository.saveAll(permissions);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        permissionRepository.saveAll(permissions);
     }
 }

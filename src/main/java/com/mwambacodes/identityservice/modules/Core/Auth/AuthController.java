@@ -4,6 +4,10 @@ import com.mwambacodes.identityservice.modules.Core.Auth.Actions.AuthLogin.AuthL
 import com.mwambacodes.identityservice.modules.Core.Auth.Actions.AuthLogin.LoginRequest;
 import com.mwambacodes.identityservice.modules.Core.Auth.Actions.AuthLogout.AuthLogoutService;
 import com.mwambacodes.identityservice.modules.Core.Auth.Actions.AuthUser.AuthUserService;
+import com.mwambacodes.identityservice.modules.Core.Auth.Actions.ChangePassword.ChangePasswordRequest;
+import com.mwambacodes.identityservice.modules.Core.Auth.Actions.ChangePassword.ChangePasswordService;
+import com.mwambacodes.identityservice.modules.Core.Auth.Actions.UpdateDetails.UpdateDetailsRequest;
+import com.mwambacodes.identityservice.modules.Core.Auth.Actions.UpdateDetails.UpdateDetailsService;
 import com.mwambacodes.identityservice.utils.ApiResponse;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,6 +25,8 @@ public class AuthController {
     private final AuthLoginService loginService;
     private final AuthUserService authUserService;
     private final AuthLogoutService authLogoutService;
+    private final ChangePasswordService changePasswordService;
+    private final UpdateDetailsService updateDetailsService;
 
     @PostMapping("/login")
     public ResponseEntity<ApiResponse> login(
@@ -38,6 +44,20 @@ public class AuthController {
     @GetMapping("/logout")
     public ResponseEntity<ApiResponse> logout(HttpServletRequest httpServletRequest) throws ServletException {
         return sendResponse(authLogoutService.init(httpServletRequest));
+    }
+
+    @PostMapping("/change-password")
+    public ResponseEntity<ApiResponse> changePassword(
+            @RequestBody ChangePasswordRequest request
+    ) {
+        return sendResponse(changePasswordService.init(request));
+    }
+
+    @PostMapping("/update-details")
+    public ResponseEntity<ApiResponse> updateDetails(
+            @RequestBody UpdateDetailsRequest request
+    ) {
+        return sendResponse(updateDetailsService.init(request));
     }
 
 }
